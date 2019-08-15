@@ -9,8 +9,10 @@ exports.up = function(knex) {
   .createTable('recipes', tbl => {
     tbl.increments();
     tbl.string('recipe_name')
-    .notNullable()
+        .notNullable()
         .unique();
+    tbl.integer('servings')
+        .notNullable();
   })
   .createTable('book_recipes', tbl => {
     tbl.increments();
@@ -38,9 +40,7 @@ exports.up = function(knex) {
   .createTable('recipe_ingredients', tbl => {
     tbl.increments();
     tbl.integer('quantity')
-        .notNullable();
     tbl.string('measurement', 255)
-        .notNullable();
     tbl.integer('recipe_id')
         .unsigned()
         .notNullable()
